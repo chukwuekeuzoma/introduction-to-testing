@@ -21,6 +21,10 @@ describe('subtract', () => {
   it('subtract two numbers', () => {
     expect(subtract(20, 10)).toBe(10);
   });
+
+  it('it should know that one of the params ia not a number', () => {
+    expect(subtract('a', 5)).toBe(NaN);
+  });
 });
 
 describe('multiply', () => {

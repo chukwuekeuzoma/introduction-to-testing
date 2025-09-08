@@ -6,16 +6,14 @@ import { Counter } from './counter';
 import '@testing-library/jest-dom/vitest';
 
 describe('Counter ', () => {
-  beforeEach(() => {
-    render(<Counter />);
-  });
-
   it('renders with an initial count of 0', () => {
+    render(<Counter />);
     const counter = screen.getByTestId('counter-count');
     expect(counter).toHaveTextContent('0');
   });
 
   it('disables the "Decrement" and "Reset" buttons when the count is 0', () => {
+    render(<Counter />);
     const decrementButton = screen.getByRole('button', { name: /decrement/i });
     const resetButton = screen.getByRole('button', { name: /reset/i });
     expect(decrementButton).toBeDisabled();
@@ -23,6 +21,7 @@ describe('Counter ', () => {
   });
 
   it('displays "days" when the count is 0', () => {
+    render(<Counter />);
     const counter = screen.getByTestId('counter-count');
     const dayLabel = screen.getByTestId('counter-unit');
     if (counter.textContent === '0') {
@@ -31,6 +30,7 @@ describe('Counter ', () => {
   });
 
   it('increments the count when the "Increment" button is clicked', async () => {
+    render(<Counter />);
     const incrementButton = screen.getByRole('button', {
       name: /increment/i,
     });
@@ -42,14 +42,13 @@ describe('Counter ', () => {
   });
 
   it('displays "day" when the count is 1', async () => {
-    const counter = screen.getByTestId('counter-count');
+    render(<Counter initailState={1} />);
     const dayLabel = screen.getByTestId('counter-unit');
-    if (counter.textContent === '1') {
-      expect(dayLabel).toHaveTextContent('day');
-    }
+    expect(dayLabel).toHaveTextContent('day');
   });
 
   it('decrements the count when the "Decrement" button is clicked', async () => {
+    render(<Counter />);
     const deCrementButton = screen.getByRole('button', {
       name: /decrement/i,
     });
@@ -61,7 +60,8 @@ describe('Counter ', () => {
   });
 
   it('does not allow decrementing below 0', async () => {
-    const decrementButton = screen.getByRole('button', { name: /decrement/i });
+    render(<Counter />);
+    const deCrementButton = screen.getByRole('button', { name: /decrement/i });
     await act(async () => {
       await userEvent.click(deCrementButton);
     });
@@ -70,6 +70,7 @@ describe('Counter ', () => {
   });
 
   it('resets the count when the "Reset" button is clicked', async () => {
+    render(<Counter />);
     const resetButton = screen.getByRole('button', { name: /reset/i });
     await userEvent.click(resetButton);
     const counter = screen.getByTestId('counter-count');
@@ -77,6 +78,7 @@ describe('Counter ', () => {
   });
 
   it('updates the document title based on the count', async () => {
+    render(<Counter />);
     const incrementButton = screen.getByRole('button', {
       name: /increment/i,
     });

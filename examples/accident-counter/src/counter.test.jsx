@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Counter } from './counter';
@@ -34,7 +34,9 @@ describe('Counter ', () => {
     const incrementButton = screen.getByRole('button', {
       name: /increment/i,
     });
-    await userEvent.click(incrementButton);
+    await act(async () => {
+      await userEvent.click(incrementButton);
+    });
     const counter = screen.getByTestId('counter-count');
     expect(counter).toHaveTextContent('1');
   });
@@ -51,14 +53,18 @@ describe('Counter ', () => {
     const deCrementButton = screen.getByRole('button', {
       name: /decrement/i,
     });
-    await userEvent.click(deCrementButton);
+    await act(async () => {
+      await userEvent.click(deCrementButton);
+    });
     const counter = screen.getByTestId('counter-count');
     expect(counter).toHaveTextContent('0');
   });
 
   it('does not allow decrementing below 0', async () => {
     const decrementButton = screen.getByRole('button', { name: /decrement/i });
-    await userEvent.click(decrementButton);
+    await act(async () => {
+      await userEvent.click(deCrementButton);
+    });
     const counter = screen.getByTestId('counter-count');
     expect(counter).toHaveTextContent('0');
   });

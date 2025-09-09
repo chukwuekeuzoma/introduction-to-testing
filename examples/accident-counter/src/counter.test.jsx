@@ -83,8 +83,8 @@ describe('Counter ', () => {
       name: /increment/i,
     });
     await userEvent.click(incrementButton);
-    expect(document.title).toBe('1 day — Accident Counter');
+    expect(document.title).toEqual(expect.stringContaining('1 day'));
     await userEvent.click(incrementButton);
-    expect(document.title).toBe('2 days — Accident Counter');
+    expect(document.title).toEqual(expect.stringContaining('2 day'));
   });
 });

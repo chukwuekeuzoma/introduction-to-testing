@@ -12,6 +12,15 @@ test('a super simple test', () => {
   expect(spyAdd).toBeCalled();
   expect(addResults).toBe(5);
 
+  const spyrandom = vi.spyOn(Math, 'random').mockReturnValue(0.5);
+  expect(Math.random()).toBe(0.5);
+
+  // this one below is just to show how to mock a function
+
+  const fixedRandom = vi.fn().mockReturnValue(0.75);
+  expect(fixedRandom()).toBe(0.75);
+
+  spyrandom.mockRestore();
   spyAdd.mockRestore();
   spySayHello.mockRestore();
 });

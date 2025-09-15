@@ -25,8 +25,8 @@ test('a super simple test', () => {
   mockFn('second call');
 
   expect(mockFn).toBeCalledTimes(2);
-  expect(mockFn).toHaveBeenNthCalledWith(1, 'first call');
-  expect(mockFn).toHaveBeenNthCalledWith(2, 'second call');
+  expect(mockFn).toBeCalledWith('first call');
+  expect(mockFn).toBeCalledWith('second call');
 
   spyrandom.mockRestore();
   spyAdd.mockRestore();

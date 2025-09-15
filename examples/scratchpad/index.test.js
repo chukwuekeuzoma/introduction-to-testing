@@ -20,6 +20,14 @@ test('a super simple test', () => {
   const fixedRandom = vi.fn().mockReturnValue(0.75);
   expect(fixedRandom()).toBe(0.75);
 
+  const mockFn = vi.fn();
+  mockFn('first call');
+  mockFn('second call');
+
+  expect(mockFn).toBeCalledTimes(2);
+  expect(mockFn).toHaveBeenNthCalledWith(1, 'first call');
+  expect(mockFn).toHaveBeenNthCalledWith(2, 'second call');
+
   spyrandom.mockRestore();
   spyAdd.mockRestore();
   spySayHello.mockRestore();

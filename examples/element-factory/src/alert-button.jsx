@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-export const AlertButton = ({}) => {
-  const [message, setMessage] = useState('Alert!');
+export const AlertButton = ({ handleSubmit = () => {}, defaultMessage }) => {
+  const [message, setMessage] = useState(defaultMessage);
 
   return (
     <div>
@@ -14,7 +14,7 @@ export const AlertButton = ({}) => {
         />
       </label>
 
-      <button onClick={() => alert(message)}>Trigger Alert</button>
+      <button onClick={() => handleSubmit(message)}>Trigger Alert</button>
     </div>
   );
 };

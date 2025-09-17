@@ -28,7 +28,5 @@ test('a super simple test', () => {
   expect(mockFn).toBeCalledWith('first call');
   expect(mockFn).toBeCalledWith('second call');
 
-  spyrandom.mockRestore();
-  spyAdd.mockRestore();
-  spySayHello.mockRestore();
+  vi.resetAllMocks();
 });

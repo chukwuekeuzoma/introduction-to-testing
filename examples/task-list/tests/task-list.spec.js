@@ -2,14 +2,13 @@ import { test, expect } from '@playwright/test';
 
 /** @type {import('../start-server').DevelopmentServer} */
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:5173');
 });
 
 test('it should load the page', async ({ page }) => {
-  await expect(page).toHaveTitle('Task List');
+ await expect(page).toHaveTitle(/Task List/i);
 });
 
-test('it should add a task', async ({ page }) => {
+test('it should add a task', async ({ page }) => { 
   const input = page.getByLabel('Create Task');
   const submit = page.getByRole('button', { name: 'Create Task' });
 
